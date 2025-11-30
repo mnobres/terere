@@ -1,0 +1,608 @@
+:root {
+    --verde-terere: #2ecc71;
+    --verde-escuro: #27ae60;
+    --verde-claro: #3ae374;
+    --preto-fundo: #0a0a0a;
+    --cinza-escuro: #1a1a1a;
+    --cinza-medio: #2a2a2a;
+    --cinza-texto: #e0e0e0;
+    --branco: #ffffff;
+    --sombra-suave: rgba(0, 0, 0, 0.3);
+    --sombra-forte: rgba(0, 0, 0, 0.6);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: linear-gradient(135deg, var(--preto-fundo) 0%, #1a1a1a 100%);
+    color: var(--cinza-texto);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Cabeçalho Moderno */
+header.cabecalho {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(26, 26, 26, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 1.2rem 3rem;
+    box-shadow: 0 4px 20px var(--sombra-forte);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+header.cabecalho.scrolled {
+    padding: 0.8rem 3rem;
+    box-shadow: 0 6px 30px var(--sombra-forte);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    animation: fadeInLeft 0.8s ease;
+}
+
+.logo img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 10px rgba(46, 204, 113, 0.3));
+    transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.logo h1 {
+    font-size: 1.3rem;
+    background: linear-gradient(135deg, var(--verde-terere), var(--verde-claro));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.cabecalho_menu {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    animation: fadeInRight 0.8s ease;
+}
+
+.cabecalho_menu a {
+    text-decoration: none;
+    color: var(--cinza-texto);
+    font-weight: 500;
+    font-size: 1rem;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.cabecalho_menu a:not(.botao-whats)::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--verde-terere), var(--verde-claro));
+    transition: width 0.3s ease;
+}
+
+.cabecalho_menu a:not(.botao-whats):hover::after {
+    width: 100%;
+}
+
+.cabecalho_menu a:not(.botao-whats):hover {
+    color: var(--verde-terere);
+}
+
+.botao-whats {
+    background: linear-gradient(135deg, var(--verde-terere), var(--verde-escuro));
+    color: var(--branco) !important;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
+    transition: all 0.3s ease;
+}
+
+.botao-whats:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(46, 204, 113, 0.6);
+    background: linear-gradient(135deg, var(--verde-claro), var(--verde-terere));
+}
+
+/* Mobile Menu Toggle */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+}
+
+.menu-toggle span {
+    width: 28px;
+    height: 3px;
+    background: var(--verde-terere);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* Banner Hero Moderno */
+.banner {
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.9), rgba(26, 26, 26, 0.8)),
+                url('/images/Banner.jpg') center/cover no-repeat;
+    min-height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--branco);
+    padding: 4rem 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(46, 204, 113, 0.1) 0%, transparent 70%);
+    animation: pulse 8s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+}
+
+.banner-texto {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    animation: fadeInUp 1s ease;
+}
+
+.banner-texto h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, var(--branco), var(--verde-claro));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+}
+
+.banner-texto p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: var(--cinza-texto);
+    line-height: 1.8;
+}
+
+.botao-principal {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--verde-terere), var(--verde-escuro));
+    color: var(--branco);
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    box-shadow: 0 8px 25px rgba(46, 204, 113, 0.4);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.botao-principal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.botao-principal:hover::before {
+    left: 100%;
+}
+
+.botao-principal:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(46, 204, 113, 0.6);
+}
+
+/* Seções com Animação */
+section {
+    padding: 5rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    /* mostrado por padrão para evitar tela preta se o JS não rodar */
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.8s ease;
+}
+
+/* estado oculto para aplicar via JS quando necessário */
+section.hidden {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+/* classe que o JS pode aplicar para animação de entrada */
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Sobre Nós - Glassmorphism */
+.sobre {
+    background: rgba(26, 26, 26, 0.6);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(46, 204, 113, 0.2);
+    border-radius: 20px;
+    padding: 3rem;
+    box-shadow: 0 8px 32px var(--sombra-forte);
+}
+
+.sobre h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, var(--verde-terere), var(--verde-claro));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 1.5rem;
+}
+
+.sobre p {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    line-height: 1.9;
+    color: var(--cinza-texto);
+}
+
+/* Produtos - Cards Modernos */
+.produtos h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, var(--verde-terere), var(--verde-claro));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 3rem;
+}
+
+.grade-produtos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+    margin-top: 2rem;
+}
+
+.produto {
+    background: rgba(26, 26, 26, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(46, 204, 113, 0.2);
+    border-radius: 20px;
+    box-shadow: 0 8px 25px var(--sombra-forte);
+    text-align: center;
+    padding: 2rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.produto::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(46, 204, 113, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.produto:hover::before {
+    opacity: 1;
+}
+
+.produto:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 40px rgba(46, 204, 113, 0.3);
+    border-color: var(--verde-terere);
+}
+
+.produto img {
+    max-width: 100%;
+    height: 200px;
+    object-fit: contain;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    transition: transform 0.4s ease;
+}
+
+.produto:hover img {
+    transform: scale(1.1) rotate(2deg);
+}
+
+.produto h3 {
+    color: var(--verde-terere);
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+}
+
+.produto p {
+    color: var(--cinza-texto);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Redes Sociais - Animadas */
+.redes h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    background: linear-gradient(135deg, var(--verde-terere), var(--verde-claro));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 2rem;
+}
+
+.redes-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.redes-links a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(26, 26, 26, 0.8);
+    backdrop-filter: blur(10px);
+    padding: 1.2rem 2rem;
+    border-radius: 50px;
+    border: 2px solid rgba(46, 204, 113, 0.3);
+    text-decoration: none;
+    color: var(--cinza-texto);
+    box-shadow: 0 4px 15px var(--sombra-forte);
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.redes-links a:hover {
+    background: linear-gradient(135deg, var(--verde-terere), var(--verde-escuro));
+    color: var(--branco);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(46, 204, 113, 0.4);
+    border-color: var(--verde-terere);
+}
+
+.redes-links img {
+    width: 35px;
+    height: 35px;
+    transition: transform 0.3s ease;
+}
+
+.redes-links a:hover img {
+    transform: rotate(360deg);
+}
+
+/* Rodapé Moderno */
+footer.rodape {
+    background: rgba(26, 26, 26, 0.95);
+    backdrop-filter: blur(10px);
+    color: var(--cinza-texto);
+    text-align: center;
+    padding: 2rem;
+    margin-top: 4rem;
+    border-top: 2px solid rgba(46, 204, 113, 0.3);
+    box-shadow: 0 -4px 20px var(--sombra-forte);
+}
+
+footer.rodape p {
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+}
+
+/* Botão de Acessibilidade */
+.acessibilidade {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    z-index: 2000;
+    animation: fadeInLeft 1s ease;
+}
+
+#btn-leitura {
+    background: linear-gradient(135deg, var(--verde-terere), var(--verde-escuro));
+    color: var(--branco);
+    border: none;
+    border-radius: 50px;
+    padding: 16px 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(46, 204, 113, 0.4);
+    transition: all 0.3s ease;
+}
+
+#btn-leitura:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 30px rgba(46, 204, 113, 0.6);
+}
+
+/* Animações */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    header.cabecalho {
+        padding: 1rem 1.5rem;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    .cabecalho_menu {
+        position: fixed;
+        top: 90px;
+        right: -100%;
+        width: 280px;
+        height: calc(100vh - 90px);
+        background: rgba(26, 26, 26, 0.98);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        padding: 2rem;
+        gap: 1.5rem;
+        box-shadow: -5px 0 20px var(--sombra-forte);
+        transition: right 0.4s ease;
+        border-left: 2px solid rgba(46, 204, 113, 0.3);
+    }
+
+    .cabecalho_menu.active {
+        right: 0;
+    }
+
+    .cabecalho_menu a {
+        width: 100%;
+        text-align: center;
+        padding: 1rem;
+        border-radius: 10px;
+        background: rgba(46, 204, 113, 0.1);
+    }
+
+    .banner-texto h2 {
+        font-size: 2rem;
+    }
+
+    .banner-texto p {
+        font-size: 1rem;
+    }
+
+    .banner {
+        min-height: 500px;
+    }
+
+    section {
+        padding: 3rem 1.5rem;
+    }
+
+    .sobre h2,
+    .produtos h2,
+    .redes h2 {
+        font-size: 2rem;
+    }
+
+    .grade-produtos {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .logo h1 {
+        font-size: 1rem;
+    }
+
+    .logo img {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media (max-width: 480px) {
+    .banner-texto h2 {
+        font-size: 1.5rem;
+    }
+
+    .botao-principal {
+        padding: 0.8rem 1.8rem;
+        font-size: 1rem;
+    }
+
+    .acessibilidade {
+        bottom: 20px;
+        left: 20px;
+    }
+
+    #btn-leitura {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+}
